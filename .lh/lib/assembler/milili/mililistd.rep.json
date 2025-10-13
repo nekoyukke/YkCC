@@ -1,0 +1,18 @@
+{
+    "sourceFile": "lib/assembler/milili/mililistd.rep",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1760305816670,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1760305816670,
+            "name": "Commit-0",
+            "content": "; アセンブラ用置換ファイルmilili用\r\n; ジャンプ・サブルーチン関連強化パッチ\r\ndef <JMP>  ,<BRANCH 1,>:\r\ndef <JNC>  ,<BRANCH 2,>:\r\ndef <JC>   ,<BRANCH 3,>:\r\ndef <JNZ>  ,<BRANCH 4,>:\r\ndef <JZ>   ,<BRANCH 5,>:\r\ndef <JA>   ,<BRANCH 6,>:\r\ndef <JNA>  ,<BRANCH 7,>:\r\ndef <CALL> ,<TIMER r0>:"
+        }
+    ]
+}

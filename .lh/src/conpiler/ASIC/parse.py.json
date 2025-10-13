@@ -1,0 +1,98 @@
+{
+    "sourceFile": "src/conpiler/ASIC/parse.py",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 20,
+            "patches": [
+                {
+                    "date": 1760303936913,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1760303959593,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,3 @@\n+\"\"\"\r\n+lexerからのものを解析しYkIRを出力\r\n+\"\"\"\r\n"
+                },
+                {
+                    "date": 1760303966393,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,5 @@\n+\"\"\"\r\n+lexerからのものを解析しYkIRを出力\r\n+\"\"\"\r\n+def parse():\r\n+    def \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1760303972632,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,4 @@\n+\"\"\"\r\n+lexerからのものを解析しYkIRを出力\r\n+\"\"\"\r\n+def parse():\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1760303980772,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,15 +1,6 @@\n \"\"\"\r\n lexerからのものを解析しYkIRを出力\r\n \"\"\"\r\n-def parse():\n-\"\"\"\r\n-lexerからのものを解析しYkIRを出力\r\n-\"\"\"\r\n def parse():\r\n-    def \n-\"\"\"\r\n-lexerからのものを解析しYkIRを出力\r\n-\"\"\"\r\n-\"\"\"\r\n-lexerからのものを解析\r\n-\"\"\"\n\\ No newline at end of file\n+    pos:int = 0\r\n+    def ex():\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1760303987221,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,5 +2,6 @@\n lexerからのものを解析しYkIRを出力\r\n \"\"\"\r\n def parse():\r\n     pos:int = 0\r\n+    def \r\n     def ex():\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1760303993052,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,8 @@\n+\"\"\"\r\n+lexerからのものを解析しYkIRを出力\r\n+\"\"\"\r\n+def parse():\r\n+    pos:int = 0\r\n+    def cu():\r\n+        pos += 1;\r\n+    def ex():\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1760303998577,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,9 @@\n+\"\"\"\r\n+lexerからのものを解析しYkIRを出力\r\n+\"\"\"\r\n+def parse():\r\n+    pos:int = 0\r\n+    def cu():\r\n+        pos += 1\r\n+        if len\r\n+    def ex():\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1760304017632,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,24 +1,9 @@\n \"\"\"\r\n lexerからのものを解析しYkIRを出力\r\n \"\"\"\r\n-def parse():\r\n+def parse(source:str, ):\r\n     pos:int = 0\r\n     def cu():\r\n         pos += 1\r\n         if len\r\n-    def ex():\n-\"\"\"\r\n-lexerからのものを解析しYkIRを出力\r\n-\"\"\"\r\n-def parse():\r\n-    pos:int = 0\r\n-    def cu():\r\n-        pos += 1;\r\n-    def ex():\n-\"\"\"\r\n-lexerからのものを解析しYkIRを出力\r\n-\"\"\"\r\n-def parse():\r\n-    pos:int = 0\r\n-    def \r\n     def ex():\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1760304031435,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,11 @@\n+\"\"\"\r\n+lexerからのものを解析しYkIRを出力\r\n+\"\"\"\r\n+from lexer import \r\n+\r\n+def parse(source:str, ):\r\n+    pos:int = 0\r\n+    def cu():\r\n+        pos += 1\r\n+        if len\r\n+    def ex():\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1760304043758,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,20 +1,11 @@\n \"\"\"\r\n lexerからのものを解析しYkIRを出力\r\n \"\"\"\r\n-from lexer import \r\n+from lexer import Token\r\n \r\n def parse(source:str, ):\r\n     pos:int = 0\r\n     def cu():\r\n         pos += 1\r\n         if len\r\n-    def ex():\n-\"\"\"\r\n-lexerからのものを解析しYkIRを出力\r\n-\"\"\"\r\n-def parse(source:str, ):\r\n-    pos:int = 0\r\n-    def cu():\r\n-        pos += 1\r\n-        if len\r\n     def ex():\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1760304063171,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,11 @@\n+\"\"\"\r\n+lexerからのものを解析しYkIRを出力\r\n+\"\"\"\r\n+from lexer import Token\r\n+\r\n+def parse(source:str, tokens:list[Token]):\r\n+    pos:int = 0\r\n+    def cu():\r\n+        pos += 1\r\n+        if len\r\n+    def ex():\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1760304077068,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,6 +6,6 @@\n def parse(source:str, tokens:list[Token]):\r\n     pos:int = 0\r\n     def cu():\r\n         pos += 1\r\n-        if len\r\n+        if len(tokens) < s\r\n     def ex():\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1760304085622,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,12 @@\n+\"\"\"\r\n+lexerからのものを解析しYkIRを出力\r\n+\"\"\"\r\n+from lexer import Token\r\n+\r\n+def parse(source:str, tokens:list[Token]):\r\n+    pos:int = 0\r\n+    def cu():\r\n+        pos += 1\r\n+        if len(tokens) < pos:\r\n+            raise RuntimeError\r\n+    def ex():\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1760304100287,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,12 @@\n+\"\"\"\r\n+lexerからのものを解析しYkIRを出力\r\n+\"\"\"\r\n+from lexer import Token\r\n+\r\n+def parse(source:str, tokens:list[Token]):\r\n+    pos:int = 0\r\n+    def cu():\r\n+        pos += 1\r\n+        if len(tokens) < pos:\r\n+            raise RuntimeError(\"out of range of \")\r\n+    def ex():\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1760304114996,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,12 @@\n+\"\"\"\r\n+lexerからのものを解析しYkIRを出力\r\n+\"\"\"\r\n+from lexer import Token\r\n+\r\n+def parse(source:str, tokens:list[Token]):\r\n+    pos:int = 0\r\n+    def cu():\r\n+        pos += 1\r\n+        if len(tokens) < pos:\r\n+            raise RuntimeError(\"out of range of pos. now pos token:\")\r\n+    def ex():\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1760304125701,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,12 @@\n+\"\"\"\r\n+lexerからのものを解析しYkIRを出力\r\n+\"\"\"\r\n+from lexer import Token\r\n+\r\n+def parse(source:str, tokens:list[Token]):\r\n+    pos:int = 0\r\n+    def cu():\r\n+        pos += 1\r\n+        if len(tokens) < pos:\r\n+            raise RuntimeError(f\"out of range of pos. now pos token:{tokens[pos-1]}\")\r\n+    def ex():\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1760304133532,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -6,7 +6,7 @@\n def parse(source:str, tokens:list[Token]):\r\n     pos:int = 0\r\n     def cu():\r\n         pos += 1\r\n-        if len(tokens) < pos:\r\n+        if len(tokens) <= pos:\r\n             raise RuntimeError(f\"out of range of pos. now pos token:{tokens[pos-1]}\")\r\n     def ex():\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1760304138941,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,12 @@\n+\"\"\"\r\n+lexerからのものを解析しYkIRを出力\r\n+\"\"\"\r\n+from lexer import Token\r\n+\r\n+def parse(source:str, tokens:list[Token]):\r\n+    pos:int = 0\r\n+    def cu():\r\n+        pos += 1\r\n+        if len(tokens) <= pos:\r\n+            raise RuntimeError(f\"out of range of pos. now pos token:{tokens[pos-1]}\")\r\n+    def ex():\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1760304146239,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -8,5 +8,6 @@\n     def ad():\r\n         pos += 1\r\n         if len(tokens) <= pos:\r\n             raise RuntimeError(f\"out of range of pos. now pos token:{tokens[pos-1]}\")\r\n+    def \r\n     def ex():\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1760304151614,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -9,6 +9,6 @@\n         pos += 1\r\n         if len(tokens) <= pos:\r\n             raise RuntimeError(f\"out of range of pos. now pos token:{tokens[pos-1]}\")\r\n     def cu():\r\n-        \r\n+        return \r\n     def ex():\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1760303936913,
+            "name": "Commit-0",
+            "content": "\"\"\"\r\nlexerからのものを解析\r\n\"\"\""
+        }
+    ]
+}
