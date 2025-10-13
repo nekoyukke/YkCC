@@ -34,7 +34,8 @@ class Lexer:
         ("STRING",   r'"([^"]*)"'),                # "string literal"
         ("NUMBER",   r'\d+(\.\d+)?'),              # Integer or decimal number
         ("IDENT",    r'[A-Za-z_][A-Za-z0-9_]*'),   # Identifiers and keywords
-        ("OP",       r'<=|>=|<>|!=|==|<|>|=|\+|-|\*|/|%|\^'),  # Operators
+        ("CMPOP",    r'<=|>=|!=|==|<|>'),       # Operators
+        ("OP",       r'=|\+|-|\*|/|%'),            # Operators
         ("COMMA",    r','),                        # Comma
         ("COLON",    r':'),                        # Colon (also used for label separator)
         ("LPAREN",   r'\('),

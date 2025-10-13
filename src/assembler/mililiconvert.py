@@ -176,6 +176,7 @@ def conversion(Tokens:list[Token]):
                     out += hex(i.order[0].value & 0xf)[2::]
                     out += argsLoad(i.order[1], Register)
                     out += argsLoad(i.order[2], Register)
+                    print("If input reg2 is odd, this may result in a poor implementation.")
                 else:
                     print("Error")
                     return ""
