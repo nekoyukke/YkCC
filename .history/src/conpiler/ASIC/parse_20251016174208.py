@@ -10,15 +10,13 @@ IF 式 比較記号 式 THEN 番号 ELSE 番号
 """
 from lexer import Token
 
-def parse(source:str, tokens:list[Token], addr:list[int] = [], reg:list[int] = [], Subreg:list[int] = []):
+def parse(source:str, tokens:list[Token], addr:list[int] = [], reg:list[int] = []):
     pos:int = 0
     line:list[str] = []
     useingaddress:list[int] = []
     useingaddress+=addr
     useingreg: list[int] = reg
-    useingSubroutinereg: list[int] = Subreg
     Variable:dict[str,int] = {} # 名前:番地
-    number:int = 0
     def ad():
         nonlocal pos
         pos += 1
@@ -57,34 +55,16 @@ def parse(source:str, tokens:list[Token], addr:list[int] = [], reg:list[int] = [
         while cu().type != "EOF":
             strs = expr()
             if strs == "@BL@":
-                # expr() returned NEXT signal: consume the NEXT keyword and its newline
-                if cu().type == "KEYWORD" and cu().value == "NEXT":
-                    ad()  # consume NEXT
-                    if cu().type == "NEWLINE":
-                        ad()  # consume newline after NEXT
                 break
             assembly += strs + "\n"
-            if cu().type == "EOF":
-                break
-            if cu().type == "NEWLINE":
-                ad()
-            else:
-                continue
+            ex("NEWLINE", "is not have line")
         return assembly
     def expr():
-        nonlocal line, number, pos
+        nonlocal line
         # アセンブリ
         res = ""
         # 行を分析
-        # Accept either a LINE_NUM token or a plain NUMBER (some lexers emit NUMBER for line labels)
-        if cu().type == "LINE_NUM":
-            linetok = ex("LINE_NUM", "is not line number")
-        elif cu().type == "NUMBER":
-            linetok = ex("NUMBER", "is not line number")
-        else:
-            # show what we actually have for easier debugging
-            print("expected LINE_NUM or NUMBER, got", cu())
-            raise RuntimeError(f"is not line number{cu()}")
+        linetok = ex("LINE_NUM", "is not line number")
         line += [linetok.value]
         if (cu().type != "KEYWORD"):
             return ""
@@ -190,29 +170,22 @@ def parse(source:str, tokens:list[Token], addr:list[int] = [], reg:list[int] = [
                     return ""
                 computed = compute()
                 # レジスタを開放
-                ex("NEWLINE", "NONE NEWLINE")
                 res += stmt()
-                print("END LOOP")
                 # NEXT後の処理
                 reg = allocreg()
                 res += "; inc mem\n"
-                res += f"FORLOOP{number}:\n"
                 res += f"GET r{reg}, {mem}\n"
-                res += f"INC r{reg}\n"
-                res += f"SET {mem}, r{reg}\n"
+                res += f"INC r{reg}"
+                res += f"SET {mem}, r{reg}"
                 # もしなら
                 res += "; CMP for registr\n"
                 res += f"CMPI r{reg}, r{computed[1][0]}\n"
-                res += f"JNE FORLOOP{number}"
-                res += f"; END"
+                res += f"JEQ"
                 freereg(computed[1][0])
                 freereg(reg)
-                return res
             case "NEXT":
                 return "@BL@"
             case "PRINT":
-                res += "; PRINT\n"
-                computed = compute()
                 return res
             case "INPUT":
                 return res
@@ -236,10 +209,6 @@ def parse(source:str, tokens:list[Token], addr:list[int] = [], reg:list[int] = [
             case "OR":
                 return res
             case "NOT":
-                return res
-            case "FUNC":
-                return res
-            case "RET":
                 return res
             case _:
                 # パスする

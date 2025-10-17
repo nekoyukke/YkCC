@@ -10,9 +10,10 @@ if str(repo_root) not in sys.path:
 import src.util as util"""
 
 lex = lexer.Lexer()
-toks = lex.tokenize("10 FOR I = 0 TO 10\n" \
-                    "20 FOR J = 0 TO 10\n" \
-                    "30 NEXT\n" \
-                    "40 NEXT\n")
+toks = lex.tokenize("10 LET x = 12\n" \
+                    "20 IF x == 3 THEN 10\n" \
+                    "30 FOR I = 0 TO 100\n" \
+                    "40 LET x = (+,x,1)\n" \
+                    "50 NEXT")
 print(toks)
 print(parse.parse("", toks))

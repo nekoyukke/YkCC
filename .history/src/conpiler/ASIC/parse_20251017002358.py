@@ -64,12 +64,9 @@ def parse(source:str, tokens:list[Token], addr:list[int] = [], reg:list[int] = [
                         ad()  # consume newline after NEXT
                 break
             assembly += strs + "\n"
-            if cu().type == "EOF":
+            if (cu().type == "EOF"):
                 break
-            if cu().type == "NEWLINE":
-                ad()
-            else:
-                continue
+            ex("NEWLINE", "is not have line")
         return assembly
     def expr():
         nonlocal line, number, pos
@@ -211,8 +208,7 @@ def parse(source:str, tokens:list[Token], addr:list[int] = [], reg:list[int] = [
             case "NEXT":
                 return "@BL@"
             case "PRINT":
-                res += "; PRINT\n"
-                computed = compute()
+                res += "; "
                 return res
             case "INPUT":
                 return res

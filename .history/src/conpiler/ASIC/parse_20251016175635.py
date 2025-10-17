@@ -10,13 +10,13 @@ IF 式 比較記号 式 THEN 番号 ELSE 番号
 """
 from lexer import Token
 
-def parse(source:str, tokens:list[Token], addr:list[int] = [], reg:list[int] = [], Subreg:list[int] = []):
+def parse(source:str, tokens:list[Token], addr:list[int] = [], reg:list[int] = []):
     pos:int = 0
     line:list[str] = []
     useingaddress:list[int] = []
     useingaddress+=addr
     useingreg: list[int] = reg
-    useingSubroutinereg: list[int] = Subreg
+    useingreg: list[int] = reg
     Variable:dict[str,int] = {} # 名前:番地
     number:int = 0
     def ad():
@@ -64,12 +64,9 @@ def parse(source:str, tokens:list[Token], addr:list[int] = [], reg:list[int] = [
                         ad()  # consume newline after NEXT
                 break
             assembly += strs + "\n"
-            if cu().type == "EOF":
+            if (cu().type == "EOF"):
                 break
-            if cu().type == "NEWLINE":
-                ad()
-            else:
-                continue
+            ex("NEWLINE", "is not have line")
         return assembly
     def expr():
         nonlocal line, number, pos
@@ -211,8 +208,6 @@ def parse(source:str, tokens:list[Token], addr:list[int] = [], reg:list[int] = [
             case "NEXT":
                 return "@BL@"
             case "PRINT":
-                res += "; PRINT\n"
-                computed = compute()
                 return res
             case "INPUT":
                 return res
@@ -236,10 +231,6 @@ def parse(source:str, tokens:list[Token], addr:list[int] = [], reg:list[int] = [
             case "OR":
                 return res
             case "NOT":
-                return res
-            case "FUNC":
-                return res
-            case "RET":
                 return res
             case _:
                 # パスする

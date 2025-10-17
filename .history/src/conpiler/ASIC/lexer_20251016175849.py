@@ -25,7 +25,7 @@ class LexerError(Exception):
 class Lexer:
     KEYWORDS = {
         "LET","IF","THEN","GOTO","FOR","NEXT","PRINT","INPUT","DIM","END",
-        "GOSUB","RETURN","STEP","TO","ELSE","REM","AND","OR","NOT","FUNC","RET"
+        "GOSUB","RETURN","STEP","TO","ELSE","REM","AND","OR","NOT","FUNC"
     }
 
     # Ordered list of token specifications (longer/priority patterns first)

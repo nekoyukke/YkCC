@@ -11,8 +11,6 @@ import src.util as util"""
 
 lex = lexer.Lexer()
 toks = lex.tokenize("10 FOR I = 0 TO 10\n" \
-                    "20 FOR J = 0 TO 10\n" \
-                    "30 NEXT\n" \
                     "40 NEXT\n")
 print(toks)
 print(parse.parse("", toks))

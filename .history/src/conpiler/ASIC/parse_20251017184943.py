@@ -69,6 +69,7 @@ def parse(source:str, tokens:list[Token], addr:list[int] = [], reg:list[int] = [
             if cu().type == "NEWLINE":
                 ad()
             else:
+                # don't raise; continue to parse next statement starting at current token
                 continue
         return assembly
     def expr():

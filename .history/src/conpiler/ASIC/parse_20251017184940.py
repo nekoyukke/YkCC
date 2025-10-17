@@ -66,9 +66,14 @@ def parse(source:str, tokens:list[Token], addr:list[int] = [], reg:list[int] = [
             assembly += strs + "\n"
             if cu().type == "EOF":
                 break
+            # If the next token is a NEWLINE, consume it. Otherwise it's the start
+            # of the next line (e.g. LINE_NUM for the next statement) and we should
+            # not treat that as an error — this happens for multi-line constructs
+            # (FOR ... NEXT) where inner code already consumed intervening NEWLINEs.
             if cu().type == "NEWLINE":
                 ad()
             else:
+                # don't raise; continue to parse next statement starting at current token
                 continue
         return assembly
     def expr():
