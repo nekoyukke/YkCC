@@ -1,0 +1,22 @@
+{
+    "sourceFile": "input.asm",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1760706233161,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1760706922988,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,34 +1,34 @@\n ; LINE10\r\n LINE10:\r\n ; FOR INDENT\r\n+; inc mem\r\n+FORLOOP0:\r\n+GET r2, 0\r\n+INC r2\r\n+SET 0, r2\r\n ; LINE20\r\n LINE20:\r\n ; FOR INDENT\r\n+; inc mem\r\n+FORLOOP1:\r\n+GET r5, 1\r\n+INC r5\r\n+SET 1, r5\r\n ; LINE30\r\n LINE30:\r\n ; PRINT\r\n ; Get a memory\r\n-GET r5, 1\r\n+GET r7, 1\r\n ; Get a memory\r\n-GET r4, 0\r\n+GET r6, 0\r\n ; PRINT COMMAND\r\n-OUTPUT r5, r4\r\n-; inc mem\r\n-FORLOOP0:\r\n-GET r6, 1\r\n-INC r6\r\n-SET 1, r6\r\n+OUTPUT r7, r6\r\n ; CMP for registr\r\n-CMPI r6, r3\r\n-JNE FORLOOP0\r\n+CMPI r5, r4\r\n+JNE FORLOOP1\r\n ; END\r\n \r\n-; inc mem\r\n-FORLOOP0:\r\n-GET r3, 0\r\n-INC r3\r\n-SET 0, r3\r\n ; CMP for registr\r\n-CMPI r3, r1\r\n+CMPI r2, r1\r\n JNE FORLOOP0\r\n-; END\r\n+; END\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1760706233161,
+            "name": "Commit-0",
+            "content": "; LINE10\r\nLINE10:\r\n; FOR INDENT\r\n; LINE20\r\nLINE20:\r\n; FOR INDENT\r\n; LINE30\r\nLINE30:\r\n; PRINT\r\n; Get a memory\r\nGET r5, 1\r\n; Get a memory\r\nGET r4, 0\r\n; PRINT COMMAND\r\nOUTPUT r5, r4\r\n; inc mem\r\nFORLOOP0:\r\nGET r6, 1\r\nINC r6\r\nSET 1, r6\r\n; CMP for registr\r\nCMPI r6, r3\r\nJNE FORLOOP0\r\n; END\r\n\r\n; inc mem\r\nFORLOOP0:\r\nGET r3, 0\r\nINC r3\r\nSET 0, r3\r\n; CMP for registr\r\nCMPI r3, r1\r\nJNE FORLOOP0\r\n; END\r\n"
+        }
+    ]
+}

@@ -1,0 +1,34 @@
+; LINE10
+LINE10:
+; FOR INDENT
+; LINE20
+LINE20:
+; FOR INDENT
+; LINE30
+LINE30:
+; PRINT
+; Get a memory
+GET r5, 1
+; Get a memory
+GET r4, 0
+; PRINT COMMAND
+OUTPUT r5, r4
+; inc mem
+FORLOOP0:
+GET r6, 1
+INC r6
+SET 1, r6
+; CMP for registr
+CMPI r6, r3
+JNE FORLOOP0
+; END
+
+; inc mem
+FORLOOP0:
+GET r3, 0
+INC r3
+SET 0, r3
+; CMP for registr
+CMPI r3, r1
+JNE FORLOOP0
+; END
