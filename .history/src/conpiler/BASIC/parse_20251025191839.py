@@ -17,7 +17,8 @@ def CallError(tok:Token, message:str, name:str, source:str):
 
 def parse(tokens:list[Token], source:str):
     pos = 0
-    labeldict:dict[str,list[int]] = {} # name : now number, mode
+    llabeldict:dict[str,list[int]] = {} # 
+    glabeldict:dict[str,list[int]] = {}
     llabelpos = 0
     glabelpos = 0
     Scope:list[str] = ["Global"]
