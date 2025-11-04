@@ -51,6 +51,7 @@ python main.py 引数等
 
 * Milili ISAは水地が開発した小型ISAです。このISAは無料で配布されています。[ミリリとキロロの現時点の今後の予定について](https://note.com/kairozei_mizuti/n/ne3665631b84f)などを参照してください
 * ISAを追加したい場合はブランチを作成してpushリクエストをしてください
+* [YkIRの仕様書](https://docs.google.com/document/d/1gwuTNnvyJRwIsUZjSjCq8UWaFkzlGOd26euXLZISjPg/edit?usp=sharing)
 # Author
  
 作成情報を列挙する
