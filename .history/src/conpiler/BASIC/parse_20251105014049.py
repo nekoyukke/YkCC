@@ -198,10 +198,7 @@ def parse(tokens:list[Token], source:str, size:int):
             case "IF":
                 # if func
                 ad("IF")
-                # 比較
-                com = comp("IF")
-                cmp = ex("CMPOP", "Conditional branching requires an operator", "IF")
-                com2 = comp("IF")
+                # 
             case _:
                 CallError(cu(), f"unkonw token {cu()}", "expr-end", source)
                 raise
