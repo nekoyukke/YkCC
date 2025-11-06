@@ -1,0 +1,26 @@
+{
+    "sourceFile": "out.bin",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 2,
+            "patches": [
+                {
+                    "date": 1762423032232,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1762423041175,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,7 @@\n git add .\r\n->> git commit -m \"parseの機能追加。if文を完全に対応。\"\r\n->> git push\n\\ No newline at end of file\n+git commit -m \"parseの機能追加。if文を完全に対応。\"\r\n+git push\r\n+\r\n+\r\n+git pull origin main --rebase\r\n+git push origin main\r\n"
+                },
+                {
+                    "date": 1762423051040,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,7 @@\n+git add .\r\n+git commit -m \"parseの機能追加。if文を完全に対応。\"\r\n+git push\r\n+\r\n+\r\n+git pull brachname --rebase\r\n+git push brachname\r\n"
+                }
+            ],
+            "date": 1762423032232,
+            "name": "Commit-0",
+            "content": "git add .\r\n>> git commit -m \"parseの機能追加。if文を完全に対応。\"\r\n>> git push"
+        }
+    ]
+}

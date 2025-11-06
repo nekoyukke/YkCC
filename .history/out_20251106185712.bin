@@ -1,0 +1,3 @@
+git add .
+>> git commit -m "parseの機能追加。if文を完全に対応。"
+>> git push
