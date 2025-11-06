@@ -17,6 +17,12 @@ source = "Func Foo(a,b)\n" \
          "  Let x = 2\n" \
          "  Let y = 2\n" \
          "  x = Foo(x,y)\n" \
+         "  If x == y THEN\n" \
+         "    x = (+, 1, x)\n" \
+         "  END\n" \
+         "  ELSE\n" \
+         "    y = (+, 1, 0)\n" \
+         "  END\n" \
          "  RET 0"
 toks = lex.tokenize(source)
 print(toks)

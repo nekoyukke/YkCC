@@ -35,6 +35,8 @@ def parse(tokens:list[Token], source:str, size:int):
     labeldict:dict[str,dict[str,int]] = {"Global":{}} # Scope:{name : addr}
     llabelpos = 0
     glabelpos = 0
+    iflevel = 0
+    forlevel = 0
     Scope:list[str] = ["Global"]
     nowtab:int = 0
     Function:list[str] = []
@@ -112,7 +114,7 @@ def parse(tokens:list[Token], source:str, size:int):
     
     def expr() -> str:
         # YkIR
-        nonlocal nowtab
+        nonlocal nowtab, iflevel, forlevel
         res = ""
         match (cu().type):
             case "IDENT":
@@ -174,7 +176,7 @@ def parse(tokens:list[Token], source:str, size:int):
                     ex("COMMA", "The function arguments have not COMMA", "Func")
                 ex("RPAREN", "The syntax for naming function arguments is not complete", "Func")
                 Addlabel(Ident.value, Ident, "Func")
-                res += "    "*nowtab + f"define {sz}:@{Ident.value}({"".join([sz+ ":" + i.value for i in Args])}) "+ "{\n"
+                res += "    "*nowtab + f"define {sz}:@{Ident.value}({", ".join([sz+ "*:" + i.value for i in Args])}) "+ "{\n"
                 nowtab += 1
                 res += "    "*nowtab + "entry:\n"
                 nowtab += 1
@@ -198,10 +200,71 @@ def parse(tokens:list[Token], source:str, size:int):
             case "IF":
                 # if func
                 ad("IF")
+                buffer = ""
                 # 比較
+                iflevel += 1
+                addr = usepos()
                 com = comp("IF")
-                cmp = ex("CMPOP", "Conditional branching requires an operator", "IF")
-                com2 = comp("IF")
+                if cu().type == "CMPOP":
+                    cmp = ex("CMPOP", "Conditional branching requires an operator", "IF")
+                    com2 = comp("IF")
+                    cmpdict:dict[str, str] = {"==":"eq", "!=":"ne", ">":"gt", ">=":"ge", "<":"lt", "<=":"le"}
+                    buffer += com[0]
+                    buffer += com2[0]
+                    if isglobal():
+                        buffer += "    "*nowtab + f"@{addr} = i1:icmp {cmpdict[cmp.value]} {sz}:@{com[1]}, {sz}:@{com2[1]}\n"
+                    else:
+                        buffer += "    "*nowtab + f"%{addr} = i1:icmp {cmpdict[cmp.value]} {sz}:%{com[1]}, {sz}:%{com2[1]}\n"
+                else:
+                    buffer += com[0]
+                    # pass
+                    if isglobal():
+                        buffer += "    "*nowtab + f"@{addr} = i1:bitcast {sz}:@{com[1]}\n"
+                    else:
+                        buffer += "    "*nowtab + f"%{addr} = i1:bitcast {sz}:%{com[1]}\n"
+                # main
+                tok:Token = ex("KEYWORD", "THEN does not exist.", "IF")
+                if tok.value != "THEN":
+                    CallError(tok, "THEN does not exist.", "IF", source)
+                    raise
+                nowtab -= 1
+                res += "    "*nowtab + f"L{iflevel}if:\n"
+                nowtab += 1
+                ex("NEWLINE", "Error", "IF")
+                # next funcs
+                while cu().type != "KEYWORD" and cu().value != "END":
+                    res += expr()
+                ex("KEYWORD", "END dose not exist.", "IF")
+                res += "    "*nowtab + f"void:br label L{iflevel}ifend\n"
+                ex("NEWLINE", "Error", "IF")
+                if cu().value == "ELSE" and cu().type == "KEYWORD":
+                    ad("IF")
+                    nowtab -= 1
+                    res += "    "*nowtab + f"L{iflevel}else:\n"
+                    nowtab += 1
+                    ex("NEWLINE", "Error", "IF")
+                    # next funcs
+                    while cu().type != "KEYWORD" and cu().value != "END":
+                        res += expr()
+                    ex("KEYWORD", "END dose not exist.", "IF")
+                    res += "    "*nowtab + f"void:br label L{iflevel}ifend\n"
+                    ex("NEWLINE", "Error", "IF")
+                    nowtab -= 1
+                    res += "    "*nowtab + f"L{iflevel}ifend:\n"
+                    nowtab += 1
+                    if isglobal():
+                        res = buffer + "    "*nowtab + f"void:br i1:@{addr}, label L{iflevel}if, label L{iflevel}else\n" + res
+                    else:
+                        res = buffer + "    "*nowtab + f"void:br i1:%{addr}, label L{iflevel}if, label L{iflevel}else\n" + res
+                else:
+                    nowtab -= 1
+                    res += "    "*nowtab + f"L{iflevel}ifend:\n"
+                    nowtab += 1
+                    if isglobal():
+                        res = buffer + "    "*nowtab + f"void:br i1:@{addr}, label L{iflevel}if, label L{iflevel}ifend\n" + res
+                    else:
+                        res = buffer + "    "*nowtab + f"void:br i1:%{addr}, label L{iflevel}if, label L{iflevel}ifend\n" + res
+                return res
             case _:
                 CallError(cu(), f"unkonw token {cu()}", "expr-end", source)
                 raise
@@ -217,7 +280,7 @@ def parse(tokens:list[Token], source:str, size:int):
         #Number
         if cur.type == "NUMBER":
             if isglobal_:
-                return "    "*nowtab + f"@{addr} = {sz}*:global {sz}:{cur.value}\n",addr
+                return "    "*nowtab + f"@{addr} = {cur.value}\n",addr
             return "    "*nowtab + f"%{addr} = {cur.value}\n", addr
         elif cur.type == "IDENT":
             if isglobal_:
@@ -238,7 +301,7 @@ def parse(tokens:list[Token], source:str, size:int):
                         break
                     ex("COMMA", "The function arguments have not COMMA", "callFunc")
                 ex("RPAREN", "The syntax for naming function arguments is not complete", "callFunc")
-                res += "    "*nowtab + f"%{addr} = {sz}:call @{cur.value}({"".join([sz+ "*:%" + i.value for i in Args])}) "
+                res += "    "*nowtab + f"%{addr} = {sz}:call @{cur.value}({", ".join([sz+ "*:%" + i.value for i in Args])}) "
                 return res, addr
             CallError(cur, "The identifier could not be found", f"Compute-{name}",source)
             raise
