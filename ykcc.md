@@ -1,4 +1,5 @@
-# git操作用
+# git操作用 !!!ここはREADMEに追加しないでください！！！！！！！！！！
+だめですよ！！！
 git add .
 git commit -m "parseの機能追加。if文を完全に対応。"
 git push
@@ -16,6 +17,16 @@ yukke conpiler collection
  
 # 含まれているファイル
 
+```
+## ファイル名
+* 機能
+* バージョン
+* 仕様書ファイルorページ先URLを提示
+* YkCC内依存関係
+* 外部依存関係
+
+のフォーマットで
+```
 
 
 # Requirement
@@ -23,10 +34,10 @@ yukke conpiler collection
 YkCCに必要なものはpython3だけです
 
 必要なものがついた場合はここに回帰詰めてください
-
+```
 * Foo
  機能Hogeには特別にFooが必要です（例）
- 
+```
 * python3
  
 # Usage
@@ -50,17 +61,19 @@ python main.py 引数等
 * [YkIRの仕様書](https://docs.google.com/document/d/1gwuTNnvyJRwIsUZjSjCq8UWaFkzlGOd26euXLZISjPg/edit?usp=sharing)
 # Author
  
+```
 作成情報を列挙する
  
 * 作成者
 * 所属
 * E-mail
+誰かやる人いたら追加して
+```
 
-* ねこゆっけ
+### ねこゆっけ
 * Discord:`@yukkiee_32380`
 
 
-誰かやる人いたら追加して
 
 # License
 ライセンスを明示する

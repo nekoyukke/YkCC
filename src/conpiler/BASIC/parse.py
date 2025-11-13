@@ -265,6 +265,11 @@ def parse(tokens:list[Token], source:str, size:int):
                     else:
                         res = buffer + "    "*nowtab + f"void:br i1:%{addr}, label L{iflevel}if, label L{iflevel}ifend\n" + res
                 return res
+            case "FOR":
+                ad("FOR")
+                buffer = ""
+                forlevel += 1
+                return res
             case _:
                 CallError(cu(), f"unkonw token {cu()}", "expr-end", source)
                 raise
